@@ -1,0 +1,567 @@
+<!doctype html>
+<html>
+  <head>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+
+
+
+  <meta      charset="UTF-8">
+    <title>Samaritan Web UI</title>
+    <meta  charset="utf-8" />
+    <meta  name="description" content="SAMARİTAN" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href= "{{ url_for('static', filename='css/w3.css') }}"/>
+    <!-- <link rel="stylesheet" href="css/bootstrap-reboot.min.css" /> -->
+    <!-- <link rel="stylesheet" href="css/bootstrap-grid.min.css" /> -->
+    <link rel="stylesheet" href=  "{{ url_for('static', filename='css/bootstrap.min.css') }}"   />
+    <link rel="stylesheet" href=" {{ url_for('static', filename='css/ekko-lightbox.css') }} " />
+    <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed" rel="stylesheet">
+    <!-- the same font(s) isn't free :( -->
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet"> 
+    <link rel="stylesheet" href= "{{ url_for('static', filename='css/font-awesome.min.css') }}"       />
+    <link rel="stylesheet" href= "{{ url_for('static', filename='css/poi.css') }}"/>
+  </head>
+  <body>
+
+    <div id="bglayer"></div>
+    <div id="bglayer2"></div>
+
+    <div id="coverlayer"></div>
+
+    <div id="loading" class="poi-color-red">Loading..</div>
+ 
+    <!-- Page Container -->
+     <!-- Page Container -->
+    <div class="w3-container w3-content container" style="max-width:1400px;margin-top:80px">
+
+      <div class="w3-col m12 col-md-12">
+
+        <hr class="poi-color-red poi-red-box-shadow-large" style="border-color: red;" />
+        <h2 class="poi-color-red poi-red-text-shadow" style="font-weight:bold;text-align:center;">Samaritan</h2>
+        <hr class="poi-color-red poi-red-box-shadow-large" style="border-color: red;" />
+
+      </div>
+<div >
+      <!-- Left Column -->
+      <div class="w3-col m6 col-md-6">
+
+
+        <div class="poi-banner-samaritan poi-bg-white" >
+
+
+
+
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){
+            namespace = '/test'; // change to an empty string to use the global namespace
+            // the socket.io documentation recommends sending an explicit package upon connection
+            // this is specially important when using the global namespace
+            var socket = io.connect('http://' + document.domain + ':' + location.port + namespace);
+
+            socket.on('connect', function(msg) {
+                socket.emit('my event', {data: 'I\'m connected!'});
+            });
+
+            socket.on('message', function(msg){
+                console.log(msg.time)
+                $('#test').html('<p>' + msg.time + '</p>');
+            });
+
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+      <!--    <div id="bannerdemo" class="poi-banner-text poi-color-white" >Variable</div>-->
+
+
+	   <div id="test"    class="poi-banner-text poi-color-black" >WHAT are YOUR COMMANDS?</div>
+
+
+
+          <div class="poi-banner-icon"></div>
+        </div>
+
+
+            </div>
+          </div>
+
+        <br />
+
+
+      <!-- End Right Column -->
+
+        <br />
+
+
+
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shoelace-css/1.0.0-beta16/shoelace.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+
+            <div class="app">
+
+                <div class="input-single">
+                    <textarea id="note-textarea" placeholder="Your Words" rows="6"></textarea>
+                </div>
+                <button id="start-record-btn" title="Start Recording">Start Conversation</button>
+                <button id="pause-record-btn" title="Pause Recording">Pause Conversation</button>
+
+                <p id="recording-instructions">Press the <strong>Start Recognition</strong> button and allow access.</p>
+
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+
+
+
+
+
+      <!-- End Right Column -->
+
+    <!-- End Page Container -->
+    
+    <br />
+
+    <script src= "{{ url_for('static', filename='js/jquery-3.3.1.slim.min.js') }}"></script>
+    <!-- <script src="js/bootstrap.min.js"></script> -->
+    <script src=  "{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"  ></script>
+    <script src=  "{{ url_for('static', filename='js/ekko-lightbox.min.js') }}"  ></script>
+    <script src=  "{{ url_for('static', filename='js/poi.js') }}" ></script>
+
+    <style>
+
+      /* Just for this demo page */
+
+      #bglayer {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-image:   "{{url_for('static', filename='img/bg/samaritanbg.png')}}" ;
+        background-size: 100% 100%;
+        z-index: -1;
+      }
+      #bglayer2 {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-image:  "{{url_for('static', filename='img/bg/lensgrid-large.png')}}";
+        background-size: 100% 100%;
+        z-index: -1;
+      }
+
+      /* #coverlayer {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-image: url('img/gallery/title.jpg');
+        background-size: 100% 100%;
+        z-index: 999;
+      } */
+
+
+      /* --- W3 styles --- */
+
+      .myGallerySlides {display: none}
+      .myGallerySlides img {vertical-align: middle;}
+      /* Slideshow container */
+      .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+      }
+      /* Next & previous buttons */
+      .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: rgb(255, 0, 0);
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+      }
+      /* Position the "next button" to the right */
+      .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+      }
+      /* On hover, add a black background color with a little bit see-through */
+      .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.8);
+      }
+      /* Caption text */
+      .text {
+        color: #ff0000;
+        font-size: 15px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 15px;
+        width: 100%;
+        text-align: center;
+      }
+      /* Number text (1/3 etc) */
+      .numbertext {
+        color: #fd0606;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+      }
+      /* The dots/bullets/indicators */
+      .dot {
+        cursor: pointer;
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        position: relative;
+        bottom: 20px;
+        background-color: rgb(80, 80, 80);
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+      }
+      .w3active, .dot:hover {
+        background-color: #ff0000;
+      }
+      /* Fading animation */
+      .w3fade {
+        -webkit-animation-name: w3fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: w3fade;
+        animation-duration: 1.5s;
+      }
+      @-webkit-keyframes w3fade {
+        from {opacity: .4} 
+        to {opacity: 1}
+      }
+      @keyframes w3fade {
+        from {opacity: .4} 
+        to {opacity: 1}
+      }
+      /* On smaller screens, decrease text size */
+      @media only screen and (max-width: 300px) {
+        .prev, .next,.text {font-size: 11px}
+      }
+
+
+      .w3lbrow > .w3lbcolumn {
+        padding: 5px 8px;
+      }
+      .w3lbrow:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      .w3lbcolumn {
+        float: left;
+        width: 25%;
+      }
+      /* The Modal (background) */
+      .w3lbmodal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: black;
+      }
+      /* Modal Content */
+      .w3lbmodal-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 0;
+        width: 90%;
+        max-width: 1200px;
+      }
+      /* The Close Button */
+      .w3lbclose {
+        color: red;
+        position: absolute;
+        top: 10px;
+        right: 25px;
+        font-size: 35px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .w3lbclose:hover,
+      .w3lbclose:focus {
+        color: red;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .myLightboxSlides {
+        display: none;
+      }
+      /* Next & previous buttons */
+      .w3lbprev,
+      .w3lbnext {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -50px;
+        color: red;
+        font-weight: bold;
+        font-size: 20px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      /* Position the "next button" to the right */
+      .w3lbnext {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+      }
+      /* On hover, add a black background color with a little bit see-through */
+      .w3lbprev:hover,
+      .w3lbnext:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+      /* Number text (1/3 etc) */
+      .w3lbnumbertext {
+        color: red;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+      }
+      .w3lbcaption-container {
+        text-align: center;
+        background-color: black;
+        padding: 2px 16px;
+        color: red;
+      }
+      .w3lbdemo {
+        opacity: 0.6;
+        cursor: pointer;
+      }
+      .w3lbactive,
+      .w3lbdemo:hover {
+        opacity: 1;
+      }
+      img.hover-shadow {
+        transition: 0.3s;
+        cursor: pointer;
+      }
+      .hover-shadow:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+      }
+
+      /* --- BS styles --- */
+
+    </style>
+
+
+
+
+
+    <script>
+      /* Just for this demo page */
+
+      var bglayer = document.getElementById('bglayer');
+      var bglayer2 = document.getElementById('bglayer2');
+      var machineheader = document.getElementById('machineheader');
+      var samplesheader = document.getElementById('samplesheader');
+
+      window.onscroll = function (e) {
+
+        var machineheaderViewportOffset = machineheader.getBoundingClientRect();
+        var machineheaderTop = machineheaderViewportOffset.top;
+        var machineheaderChangePoint = machineheaderTop - 200;
+
+        var samplesheaderViewportOffset = samplesheader.getBoundingClientRect();
+        var samplesheaderTop = samplesheaderViewportOffset.top;
+        var samplesheaderChangePoint = samplesheaderTop - 200;
+        
+        if (machineheaderChangePoint > 0) {
+          bglayer.style.backgroundImage = 'url(img/bg/samaritanbg.png)';
+          bglayer.style.backgroundSize = '100% 100%';
+          bglayer.style.opacity = '1';
+          bglayer2.style.backgroundImage = 'url(img/bg/lensgrid-large.png)';
+          bglayer2.style.backgroundSize = '100% 100%';
+        } else if (machineheaderChangePoint < 0 && samplesheaderChangePoint > 0) {
+          bglayer.style.backgroundImage = 'url(img/bg/machinebg.png)';
+          bglayer.style.backgroundSize = '100% 100%';
+          bglayer.style.opacity = '0.9';
+          bglayer2.style.backgroundImage = 'url(img/bg/lensgrid-large.png)';
+          bglayer2.style.backgroundSize = '100% 100%';
+        } else {
+          bglayer.style.backgroundImage = 'url(img/bg/poibg.jpg)';
+          bglayer.style.backgroundSize = '100% 100%';
+          bglayer.style.opacity = '1';
+          bglayer2.style.backgroundImage = 'url(img/bg/lensgrid-small.png)';
+          bglayer2.style.backgroundSize = '100% 100%';
+        }
+
+      } 
+
+      /* setTimeout( ()=> {
+        var loadCoverInterval = setInterval( ()=> {
+          var coverlayer = document.getElementById('coverlayer');
+          var coverlayerheight = coverlayer.clientHeight;
+          var newcoverlayerheight = coverlayerheight - 20;
+          if (coverlayerheight > 20) {
+            coverlayer.style.height = newcoverlayerheight + 'px';
+          } else {
+            coverlayer.style.display = 'none';
+            clearInterval(loadCoverInterval);
+          }
+        }, 50);
+      }, 800); */
+
+      function banner1(txtid) {
+
+        switch (txtid) {
+          case 1:
+          samaritanWrite("demobanner", 0, "You are being watched !", "banner1", 2);
+          break;
+          case 2:
+          samaritanWrite("demobanner", 0, "What are your commands ? &nbsp;");
+          break;
+        }
+
+      }
+      banner1(1);
+
+      function banner2(txtid) {
+
+        switch (txtid) {
+          case 1:
+          samaritanWrite("bannerdemo", 0, "Samaritan:_Banner", "banner2", 2);
+          break;
+          case 2:
+          samaritanWrite("bannerdemo", 0, "Samaritan is here !", "banner2", 3);
+          break;
+          case 3:
+          samaritanWrite("bannerdemo", 0, "Use like a banner !", "banner2", 4);
+          break;
+          case 4:
+          samaritanWrite("bannerdemo", 0, "Click me hard !", "banner2", 1);
+          break;
+        }
+
+      }
+      banner2(1);
+
+
+      /* --- W3 scripts --- */
+      var slideIndex = 1;
+      showSlides(slideIndex);
+      function plusSlides(n) {
+        showSlides(slideIndex += n);
+      }
+      function currentSlide(n) {
+        showSlides(slideIndex = n);
+      }
+      function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("myGallerySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}    
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" w3active", "");
+        }
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " w3active";
+      }
+
+      var w3carouselInterval = setInterval( () => {
+        plusSlides(1);
+      }, 5000);
+      document.getElementById('w3carousel').onmouseenter = function(e) {
+        clearInterval(w3carouselInterval);
+      };
+      document.getElementById('w3carousel').onmouseleave = function(e) {
+        w3carouselInterval = setInterval( () => {
+          plusSlides(1);
+        }, 5000);
+      };
+
+
+      function openLBModal() {
+        document.getElementById('myW3LBModal').style.display = "block";
+      }
+      function closeLBModal() {
+        document.getElementById('myW3LBModal').style.display = "none";
+      }
+
+      // When the user clicks anywhere outside of the w3 modal, close it.
+      window.onclick = function(event) {
+        if (event.target == document.getElementById('myW3LBModal')) {
+          document.getElementById('myW3LBModal').style.display = "none";
+        }
+      }
+
+      var slideIndexLB = 1;
+      showSlidesLB(slideIndexLB);
+
+      function plusSlidesLB(n) {
+        showSlidesLB(slideIndexLB += n);
+      }
+      function currentSlideLB(n) {
+        showSlidesLB(slideIndexLB = n);
+      }
+      function showSlidesLB(n) {
+        var i;
+        var slides = document.getElementsByClassName("myLightboxSlides");
+        var dots = document.getElementsByClassName("w3lbdemo");
+        var captionText = document.getElementById("w3lbcaption");
+        if (n > slides.length) {slideIndexLB = 1}
+        if (n < 1) {slideIndexLB = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" w3lbactive", "");
+        }
+        slides[slideIndexLB-1].style.display = "block";
+        dots[slideIndexLB-1].className += " w3lbactive";
+        captionText.innerHTML = dots[slideIndexLB-1].alt;
+      }
+
+      /* --- BS scripts --- */
+
+      $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+          event.preventDefault();
+          $(this).ekkoLightbox({alwaysShowClose: true});
+      });
+    </script>
+  </body>
+</html>
